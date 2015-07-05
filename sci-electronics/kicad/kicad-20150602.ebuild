@@ -5,7 +5,8 @@
 EAPI="5"
 PYTHON_COMPAT=( python2_7 )
 
-WX_GTK_VER="2.8"
+WX_GTK_VER="3.0"
+WX_PYTHON_VER="3.0"
 CMAKE_VER="2.6.0"
 
 inherit cmake-utils wxwidgets fdo-mime gnome2-utils python-r1 flag-o-matic
@@ -47,6 +48,7 @@ DEPEND="
 		>=dev-util/cmake-${CMAKE_VER}
 		>=dev-libs/boost-1.40[context,threads,python?]
 		app-arch/xz-utils
+		dev-python/wxpython:${WX_PYTHON_VER}
 		doxygen? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}
 		sys-libs/zlib
@@ -56,9 +58,9 @@ RDEPEND="${CDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd ${WORKDIR}
-	mv KiCad-kicad-doc-b2bf4e3 ${PN}-doc
-	mv KiCad-kicad-library-7db5dca kicad-${PN}-library
-	mv KiCad-kicad-source-mirror-705c4ef ${PN}
+	mv KiCad-kicad-doc-b2bf4e3 ${P}-doc
+	mv KiCad-kicad-library-7db5dca ${P}-library
+	mv KiCad-kicad-source-mirror-705c4ef ${S}
 }
 
 src_prepare() {
@@ -76,15 +78,15 @@ src_prepare() {
 		sed '/set(_PYTHON3_VERSIONS 3.3 3.2 3.1 3.0)/d' -i CMakeModules/FindPythonLibs.cmake || die "sed failed"
 	fi
 
-	if use doc;then
-		for lang in ${LANGS};do
-			for x in ${lang};do
-				if ! use linguas_${x}; then
-					sed "s| \<${x}\>||" -i kicad-doc/{internat,doc/{help,tutorials}}/CMakeLists.txt || die "sed failed"
-				fi
-			done
-		done
-	fi
+	#if use doc;then
+	#	for lang in ${LANGS};do
+	#		for x in ${lang};do
+	#			if ! use linguas_${x}; then
+	#				sed "s| \<${x}\>||" -i kicad-doc/{internat,doc/{help,tutorials}}/CMakeLists.txt || die "sed failed"
+	#			fi
+	#		done
+	#	done
+	#fi
 
 	#fdo
 	sed -e 's/Categories=Development;Electronics$/Categories=Development;Electronics;/' \
@@ -117,7 +119,7 @@ src_prepare() {
 
 
 src_configure() {
-	#bzr whoami "anonymous"
+	bzr whoami "anonymous"
 	if use amd64;then
 		append-cxxflags -fPIC
 	fi
@@ -125,8 +127,8 @@ src_configure() {
 	need-wxwidgets unicode
 
 	mycmakeargs="${mycmakeargs}
-		-DKICAD_DOCS=/usr/share/doc/${PF}
-		-DKICAD_HELP=/usr/share/doc/${PF}/help
+		-DKICAD_DOCS=/usr/share/doc/${PN}
+		-DKICAD_HELP=/usr/share/doc/${PN}/help
 		-DwxUSE_UNICODE=ON
 		-DKICAD_TESTING_VERSION=ON
 		-DKICAD_MINIZIP=OFF
@@ -148,7 +150,7 @@ src_compile() {
 src_install() {
 	cmake-utils_src_install
 	if use doc; then
-		insinto /usr/share/doc/${PF}
+		insinto /usr/share/doc/${PN}
 		doins uncrustify.cfg
 		cd Documentation
 		doins -r GUI_Translation_HOWTO.pdf guidelines/UIpolicies.txt doxygen/*
