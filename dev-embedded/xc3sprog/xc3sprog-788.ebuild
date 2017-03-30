@@ -13,7 +13,7 @@ HOMEPAGE="http://xc3sprog.sourceforge.net/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE="-ftd2xx"
 
 DEPEND="!ftd2xx? ( dev-embedded/libftdi )
