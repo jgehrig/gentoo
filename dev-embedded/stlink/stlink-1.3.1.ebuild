@@ -20,7 +20,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND="
-	>=virtual/libusb-1.0.9
+	>=dev-libs/libusb-1.0.9
 	virtual/pkgconfig"
 RDEPEND="
 	>=virtual/libusb-1.0.9
