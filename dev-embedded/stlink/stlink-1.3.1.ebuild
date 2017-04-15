@@ -23,7 +23,7 @@ DEPEND="
 	>=dev-libs/libusb-1.0.9
 	virtual/pkgconfig"
 RDEPEND="
-	>=virtual/libusb-1.0.9
+	>=dev-libs/libusb-1.0.9
 "
 
 pkg_setup() {
