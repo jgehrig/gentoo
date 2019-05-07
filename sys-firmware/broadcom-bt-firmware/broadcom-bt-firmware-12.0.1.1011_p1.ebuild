@@ -7,6 +7,7 @@ EAPI=5
 DESCRIPTION="Firmware images for Broadcom Bluetooth devices."
 HOMEPAGE="https://github.com/winterheart/broadcom-bt-firmware"
 SRC_URI="https://github.com/winterheart/broadcom-bt-firmware/archive/v${PV}.tar.gz"
+KEYWORDS="amd64 x86"
 
 LICENSE="MIT"
 SLOT="0"
