@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://github.com/equalsraf/neovim-qt.git"
 LICENSE="ISC"
 SLOT="0"
 KEYWORDS=""
-IUSE="gcov +msgpack"
+IUSE="gcov gvimexe +msgpack"
 
 DEPEND="
 	msgpack? ( dev-libs/msgpack )
@@ -22,7 +22,8 @@ DEPEND="
 	dev-qt/qttest:5
 	dev-qt/qtwidgets:5"
 RDEPEND="${DEPEND}
-	app-editors/neovim"
+	app-editors/neovim
+	gvimexe? ( !app-editors/gvim )"
 
 src_configure() {
 	CMAKE_BUILD_TYPE="Release"
@@ -33,6 +34,14 @@ src_configure() {
 	)
 
 	cmake-utils_src_configure
+}
+
+src_install() {
+	default_src_install
+
+	if use gvimexe; then
+		newbin build/bin/nvim-qt gvim
+	fi
 }
 
 pkg_postinst() {
