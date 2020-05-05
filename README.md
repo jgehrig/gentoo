@@ -1,7 +1,5 @@
-# John Gehrig's Gentoo Overlay
-This repository contains packages I am modifying, hacking on, or are otherwise unavailable in the main Gentoo Overlay.
-
-**Disclaimer** These packages/scripts are experimental, some features may not work.
+# Experimental Gentoo Overlay
+This is a repository for my own experimentation. It contains experimental software, or packages otherwise unavailable in the main Gentoo Overlay.
 
 ## How To Install This Overlay
 Layman has been superseded by eselect-repository, which is easier to configure... Yay!
@@ -22,13 +20,3 @@ You need to perform an `emerge --sync` command so the repository is downloaded.
 `!!! Section '{repo-name}' in repos.conf has name different from repository name 'jgehrig' set inside repository`
 
 You must call this repository 'jgehrig' in the eselect repository command.
-
-### Using Layman (Deprecated)
-Previously, this overlay was added to layman by creating the file `/etc/portage/repros.conf/jgehrig.conf`:
-```
-[jgehrig-gentoo]
-priority = 50
-location = /var/lib/layman/jgehrig-gentoo
-layman-type = git
-auto-sync = Yes
-```
