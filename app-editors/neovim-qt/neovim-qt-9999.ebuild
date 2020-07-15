@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://github.com/equalsraf/neovim-qt.git"
 LICENSE="ISC"
 SLOT="0"
 KEYWORDS=""
-IUSE="gcov +msgpack"
+IUSE="gcov +msgpack +clipboard"
 
 DEPEND="
 	msgpack? ( dev-libs/msgpack )
@@ -23,6 +23,8 @@ DEPEND="
 	dev-qt/qtwidgets:5"
 RDEPEND="${DEPEND}
 	app-editors/neovim
+	clipboard? ( x11-misc/xclip )
+	clipboard? ( x11-misc/xsel )
 	"
 
 src_configure() {
