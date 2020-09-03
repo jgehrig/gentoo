@@ -9,7 +9,7 @@ To use this overlay, you will need to `emerge eselect-repository`.
 [Gentoo Wiki eselect/repository](https://wiki.gentoo.org/wiki/Eselect/Repository)
 
 **Installation Commands:**  
-1. `eselect repository add jgehrig git https://github.com/jgehrig/jgehrig-gentoo.git`
+1. `eselect repository add jgehrig git https://github.com/jgehrig/gentoo.git`
 2. `emerge --sync`
 
 ### Common Error Messages
