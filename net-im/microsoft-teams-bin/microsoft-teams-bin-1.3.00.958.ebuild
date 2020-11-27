@@ -8,7 +8,7 @@ inherit desktop
 DESCRIPTION="Microsoft Teams Linux Client"
 HOMEPAGE="https://products.office.com/en-us/microsoft-teams/group-chat-software"
 
-SRC_URI="https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams-insiders/teams-insiders_1.3.00.5153_amd64.deb"
+SRC_URI="https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams-insiders/teams-insiders_${PV}_amd64.deb"
 
 # Do not use Gentoo mirrors
 RESTRICT="mirror"
