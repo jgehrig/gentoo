@@ -21,15 +21,12 @@ DEPEND="
 	app-arch/unzip
 	"
 
-RDEPEND=""
+RDEPEND="
+	app-crypt/libsecret
+	"
 
 S="${WORKDIR}"
 
-#pkg_nofetch() {
-#	einfo "Please download teams-insiders_${PV}_amd64.deb and move it to"
-#	einfo "your distfiles directory."
-#}
-#
 src_unpack() {
 	default
 
